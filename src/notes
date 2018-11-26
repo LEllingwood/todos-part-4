@@ -7,3 +7,11 @@ autofocus goes directly to a particular box
 switch only looks for the first path that matches.  404 error messages should be at the bottom.
 
 blank path (routh with no path) can be 404 message
+
+// this was in App.  Move this here.  Not sure why??
+// TodoItem
+//   key={todo.id}
+//   title={todo.title}
+//   completed={todo.completed}
+//   (name for completing todo)={props.handleCompleteTodoClick(todo.id)}
+//   (name for remove todo)={props.handleRemoveTodoClick(todo.it)}
