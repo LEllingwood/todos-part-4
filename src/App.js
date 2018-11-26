@@ -135,3 +135,17 @@ class App extends Component {
 }
 
 export default App;
+
+// const mapstatetoprops = state => 
+
+export default connect(
+    state=> ({
+
+        active: state.todos.filter(todo => !todo.completed).length
+
+    }),
+
+    dispatch => ({
+        deleteCompletedTodos: () => dispatch(deleteCompletedTodos())
+    })
+)(App)

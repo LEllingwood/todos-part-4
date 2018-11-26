@@ -21,6 +21,18 @@ class TodoList extends Component {
 
 export default TodoList;
 
-// React.fragment would allow you to add things less than a div to get around the requirement that you only have one div.
+const mapStateToProps = (state) => {
+  return { 
+    active: state.todos.filter(todo => !todo.completed).length,
+    
+  }
+};
 
-// the two ways to re-render the page is to: 1) change the state, and 2) ?
+export default connect(
+    mapStateToProps
+    ,
+    mapDispatchToProps
+    // dispatch => ({
+    //     deleteCompletedTodos: () => dispatch(deleteCompletedTodos())
+    // })
+)(TodoList);

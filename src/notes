@@ -1,17 +1,61 @@
+const { active, filter, deleteCompletedTodos } = this.props
+
+you must pass these three components.  
 
 
-autofocus goes directly to a particular box
+const mapstatetoprops = state => 
+
+export default connect(
+    state=> ({
+
+        active: state.todos.filter(todo => !todo.completed).length
+
+    }),
+
+    dispatch => ({
+        deleteCompletedTodos: () => dispatch(deleteCompletedTodos())
+    })
+)(TodoFooter)
+
+on line 11, the active will become a prop of the footer components
+state moves out of the component into the store.
+
+you can get props in by passing them down through tag or by the connect - mapstatetoprops function.
+
+numOfActiveTodos: state.todos.filter(todo => !todo.completed).length
 
 
+mdtp: connect provides dispatch as a function.  you pass in state
 
-switch only looks for the first path that matches.  404 error messages should be at the bottom.
+connect( null, dispatch => ({ addTodo: title => dispatch(addTodo(title))}))(TodoHeader);
 
-blank path (routh with no path) can be 404 message
 
-// this was in App.  Move this here.  Not sure why??
-// TodoItem
-//   key={todo.id}
-//   title={todo.title}
-//   completed={todo.completed}
-//   (name for completing todo)={props.handleCompleteTodoClick(todo.id)}
-//   (name for remove todo)={props.handleRemoveTodoClick(todo.it)}
+ask taylor why we don't need any more of the event handlers other than the addTodo.  
+
+export const toggleTodo = id => type: toggleTodo, payload: id.
+
+addtodo = title
+deleteTodo = id
+deleteCompletedTodos = () => ({
+    type: delete.  no payload.
+})
+
+named exports can be imported only if you list the name exactly.  
+
+could export a js object:
+
+export {
+    TOGGLE_TODO: 'TOGGLE_TODO'; 
+    etc.
+}
+
+shortcut to mapdispatchtoprops:
+
+({deleteCompletedTodos})  - see api for connect check out the mdtp section.  this passes it as an object.  automatically wraps it in a dispatch call.  write it the long way for now.
+
+
+import {addTodo} from "../actions";
+import { connect } from 'react-redux';
+import React from 'react';
+
+this goes at the top of the file. 
