@@ -1,17 +1,22 @@
 import React, { Component } from "react";
 import TodoItem from "./TodoItem";
+import { connect } from 'react-redux';
+import { toggleTodo } from "./actions";
+import { deleteTodo } from "./actions";
 
 class TodoList extends Component {
   render() {
+    console.log(this.props.path)
     return (
       <ul className="todo-list">
+
         {this.props.todos.map(todo => (
           <TodoItem
             title={todo.title}
             key={todo.id}
             completed={todo.completed}
-            handleToggleTodo={this.props.handleToggleTodo(todo.id)}
-            handleDeleteTodo={this.props.handleDeleteTodo(todo.id)}
+            handleToggleTodo={(event) => this.props.handleToggleTodo(todo.id)}
+            handleDeleteTodo={(event) => this.props.handleDeleteTodo(todo.id)}
           />
         ))}
       </ul>
@@ -19,20 +24,33 @@ class TodoList extends Component {
   }
 }
 
-export default TodoList;
-
-const mapStateToProps = (state) => {
-  return { 
-    active: state.todos.filter(todo => !todo.completed).length,
+export const mapStateToProps = (state, ownProps) => {
+  switch (ownProps.path){
+    case "/": 
+      return {todos: state.todos}
     
+    case "/active":
+      return{ todos: state.todos.filter(todo => !todo.completed)}
+    
+    case "/completed": 
+      return { todos: state.todos.filter(todo => todo.completed)}
+    
+    default:
+      return {todos: state.todos}
+  }
+
+  return { 
+    todos: state.todos,
   }
 };
 
-export default connect(
-    mapStateToProps
-    ,
-    mapDispatchToProps
-    // dispatch => ({
-    //     deleteCompletedTodos: () => dispatch(deleteCompletedTodos())
-    // })
-)(TodoList);
+export const mapDispatchToProps = (dispatch) => {
+  return {
+
+    handleToggleTodo: (todoId) => dispatch(toggleTodo(todoId)),
+    handleDeleteTodo: (todoId) => dispatch(deleteTodo(todoId))
+  }
+
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(TodoList);

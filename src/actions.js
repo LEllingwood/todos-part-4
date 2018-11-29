@@ -1,12 +1,9 @@
 // what import statements do I need here?
-
-
 export const TOGGLE_TODO = 'TOGGLE_TODO';
 export const ADD_TODO = 'ADD_TODO';
 export const DELETE_TODO = 'DELETE_TODO';
-export const CLEAR_COMPLETED_TODOS = 'CLEAR_COMPLETED_TODOS';
+export const CLEAR_COMPLETED_TODO = 'CLEAR_COMPLETED_TODO';
 
-// is text the appropriate argument?
 export function toggleTodo(id) {
     return {
         type: TOGGLE_TODO,
@@ -28,9 +25,8 @@ export function deleteTodo(id){
     }
 };
 
-export function clearCompletedTodo(text){
+export function clearCompletedTodo(id){
     return {
-        type:CLEAR_COMPLETED_TODOS,
-        
+        type:CLEAR_COMPLETED_TODO,
     }
 };

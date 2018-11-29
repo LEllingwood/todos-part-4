@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import TodoList from "./TodoList";
 
 class TodoItem extends Component {
     render() {
@@ -9,7 +8,7 @@ class TodoItem extends Component {
             <input
               className="toggle"
               type="checkbox"
-              checked={this.props.completed}
+              defaultChecked={this.props.completed}
               onClick={this.props.handleToggleTodo}
             />
             <label>{this.props.title}</label>
@@ -21,20 +20,3 @@ class TodoItem extends Component {
   }
   
   export default TodoItem;
-
-  // does TodoItem need access to state???
-  // const mapstatetoprops = state => 
-
-export default connect(
-    // state=> ({
-
-    //     active: state.todos.filter(todo => !todo.completed).length
-
-    // })
-    mapStateToProps
-    ,
-    mapDispatchToProps
-    // dispatch => ({
-    //     deleteCompletedTodos: () => dispatch(deleteCompletedTodos())
-    // })
-)(TodoItem);

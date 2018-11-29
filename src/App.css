@@ -30,3 +30,11 @@
     transform: rotate(360deg);
   }
 }
+
+.sublink {
+  background-color: #a1a4a8;
+}
+
+.footer {
+  color: purple;
+}
