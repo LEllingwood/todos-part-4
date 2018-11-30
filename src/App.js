@@ -97,7 +97,7 @@ class App extends Component {
         </section>
         <footer className="footer">
           <span className="todo-count">
-            <strong>0</strong> item(s) left
+            <strong>{this.props.active}</strong> item(s) left
           </span>
           <ul className="filters">
             <li className="sublink">
@@ -114,7 +114,7 @@ class App extends Component {
             className="clear-completed"
             onClick={this.props.handleDeleteCompletedTodos}
           >
-            Clear completed
+            Delete completed
           </button>
         </footer>
       </section>
@@ -124,7 +124,7 @@ class App extends Component {
 
 export const mapStateToProps = (state) => {
   return { 
-    active: state.todos
+    active: state.todos.filter(todo => !todo.completed).length
     
   }
 };
@@ -137,4 +137,4 @@ export const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default connect(null,mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);
